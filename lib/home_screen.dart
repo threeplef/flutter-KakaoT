@@ -2,7 +2,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final dummyItems = [
+    'https://t1.daumcdn.net/withkakao/with/SERVICE_BANNER/20190821/20190821115419/1aad1f1eba6c432799780165da94067f',
+    'https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/service/a85d0594017900001.jpg',
+    'http://cdn.aitimes.kr/news/photo/202006/16654_18066_932.jpg',
+    'https://t1.daumcdn.net/withkakao/with/SERVICE_BANNER/20190821/20190821115419/a84951acf89e4ec9bac8b222619d7276',
+    'https://ai.esmplus.com/hr120890/img/1805/180518/kakao_school_00.jpg',
+  ];
+
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -124,25 +132,25 @@ class HomeScreen extends StatelessWidget {
   _buildMiddle() {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 400.0,
+        height: 150,
+        autoPlay: true,
       ),
-      items: [1, 2, 3, 4, 5].map((i) {
+      items: dummyItems.map((url) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(
-                  horizontal: 5.0,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(
+                horizontal: 5.0,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  url,
+                  fit: BoxFit.cover,
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                ),
-                child: Text(
-                  'text $i',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
-                ));
+              ),
+            );
           },
         );
       }).toList(),
@@ -150,6 +158,16 @@ class HomeScreen extends StatelessWidget {
   }
 
   _buildBottom() {
-    return Text('Bottom');
+    final items = List.generate(10, (index) {
+      return ListTile(
+        leading: Icon(Icons.notifications_none),
+        title: Text('[이벤트] 이것은 공지사항입니다'),
+      );
+    });
+    return ListView(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      children: items,
+    );
   }
 }

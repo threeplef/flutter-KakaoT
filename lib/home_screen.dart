@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -5,7 +6,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         _buildTop(),
         _buildMiddle(),
@@ -16,7 +17,10 @@ class HomeScreen extends StatelessWidget {
 
   _buildTop() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20,),
+      padding: const EdgeInsets.only(
+        top: 20,
+        bottom: 20,
+      ),
       child: GestureDetector(
         onTap: () {
           print('클릭');
@@ -118,7 +122,31 @@ class HomeScreen extends StatelessWidget {
   }
 
   _buildMiddle() {
-    return Text('Middle');
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: 400.0,
+      ),
+      items: [1, 2, 3, 4, 5].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 5.0,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.amber,
+                ),
+                child: Text(
+                  'text $i',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ));
+          },
+        );
+      }).toList(),
+    );
   }
 
   _buildBottom() {

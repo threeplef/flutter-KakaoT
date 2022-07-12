@@ -29,41 +29,29 @@ class _KaKaoMainScreenState extends State<KaKaoMainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
+        backgroundColor: Colors.indigo,
+        title: const Text(
           '카카오 T',
-          style: TextStyle(
-            color: Colors.black,
-          ),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         actions: [
           IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.add,
-                color: Colors.black,
-              ))
+              icon: const Icon(Icons.search, color: Colors.white))
         ],
       ),
       body: screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '홈',
-          ),
+              icon: Icon(Icons.notifications_none), label: '알림'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            label: '이용 서비스',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_box),
-            label: '내 정보',
-          ),
+              icon: Icon(Icons.perm_identity_rounded), label: '내 정보'),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.black,
         onTap: _onItemTapped,
       ),
     );

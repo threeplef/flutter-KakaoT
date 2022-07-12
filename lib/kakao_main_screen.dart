@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kakaot/home_screen.dart';
 import 'package:kakaot/info_screen.dart';
-import 'package:kakaot/service_screen.dart';
+import 'package:kakaot/notification_screen.dart';
 
 class KaKaoMainScreen extends StatefulWidget {
   const KaKaoMainScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _KaKaoMainScreenState extends State<KaKaoMainScreen> {
 
   final screens = [
     HomeScreen(),
-    ServiceScreen(),
+    NotificationScreen(),
     InfoScreen(),
   ];
 

@@ -1,10 +1,39 @@
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatelessWidget {
-  const InfoScreen({Key? key}) : super(key: key);
+  InfoScreen({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+  final icon = [
+    Icons.notifications_none,
+    Icons.article_rounded,
+    Icons.credit_card,
+    Icons.flag_circle,
+    Icons.airplane_ticket_outlined,
+    Icons.drive_eta_outlined,
+    Icons.star_border,
+    Icons.check_box_outline_blank,
+    Icons.check_circle_outline,
+    Icons.language,
+    Icons.article_outlined,
+    Icons.info_outline
+  ];
+
+  final menuList = [
+    '공지/이벤트',
+    '이용기록',
+    '결제수단 관리',
+    '포인트',
+    '쿠폰함',
+    '차량 관리',
+    '즐겨 찾는 장소 설정',
+    '카카오미니 설정',
+    '이벤트 수신 설정',
+    '언어 설정',
+    '약관 및 정책',
+    '버전 정보'
+  ];
+
+  Widget _myInfo() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -109,7 +138,8 @@ class InfoScreen extends StatelessWidget {
                                   SizedBox(width: 5),
                                   Padding(
                                     padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
-                                    child: Text('나의 배지', style: TextStyle(fontSize: 15)),
+                                    child: Text('나의 배지',
+                                        style: TextStyle(fontSize: 15)),
                                   ),
                                 ],
                               ),
@@ -124,6 +154,40 @@ class InfoScreen extends StatelessWidget {
             ),
           ],
         ),
+      ],
+    );
+  }
+
+  Widget _menuList() {
+    final items = List.generate(12, (index) {
+      return ListTile(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 15.0, top: 4),
+          child: Icon(icon[index], color: Colors.black, size: 23),
+        ),
+        title: Text(menuList[index]),
+        trailing: const Padding(
+          padding: EdgeInsets.only(right: 15.0),
+          child: Icon(Icons.arrow_forward_ios, size: 15),
+        ),
+      );
+    });
+
+    return SingleChildScrollView(
+      child: ListView(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        children: items,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        _myInfo(),
+        _menuList(),
       ],
     );
   }

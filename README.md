@@ -1,4 +1,4 @@
-# kakaot
+# flutter-KakaoT
 
 A new Flutter project.
 
